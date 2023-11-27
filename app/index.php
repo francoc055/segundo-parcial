@@ -26,10 +26,11 @@ $app->group('/alta', function (RouteCollectorProxy $group){
 
 
 $app->post('/ConsultarCuenta', CuentaController::class . ':ConsultarCuenta');
+$app->delete('/bajaCuenta', CuentaController::class . ':BajaCuenta');
 
 $app->put('/modificarCuenta', CuentaController::class . ':ActualizarCuenta');
 
-$app->group('/movimientos', function (RouteCollectorProxy $group){
+$app->group('/movimientosDepositos', function (RouteCollectorProxy $group){
     $group->get('/total', DepositoController::class . ':TotalTransaccion');
     $group->get('/usuario', DepositoController::class . ':TransaccionesDeUnUsuario');
     $group->get('/entreFechas', DepositoController::class . ':TransaccionesEntreFechas');
@@ -37,6 +38,16 @@ $app->group('/movimientos', function (RouteCollectorProxy $group){
     $group->get('/tipoMoneda', DepositoController::class . ':TransaccionesPorMoneda');
 });
 
+
+$app->group('/movimientosRetiros', function (RouteCollectorProxy $group){
+    $group->get('/total', RetiroController::class . ':TotalTransaccion');
+    $group->get('/usuario', RetiroController::class . ':TransaccionesDeUnUsuario');
+    $group->get('/entreFechas', RetiroController::class . ':TransaccionesEntreFechas');
+    $group->get('/tipoDeCuenta', RetiroController::class . ':TransaccionesPorTipoDeCuentas');
+    $group->get('/tipoMoneda', RetiroController::class . ':TransaccionesPorMoneda');
+});
+
+$app->get('/transacciones', RetiroController::class . ':RetirosDepositosDeUnUsuario');
 
 $app->run();
 

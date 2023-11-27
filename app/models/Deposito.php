@@ -16,7 +16,7 @@ class Deposito implements IMovimientos{
         {
             $objetoAccesoDato->beginTransaction();
             $consulta = $objetoAccesoDato->RetornarConsulta("INSERT into depositos (fecha, monto, idCuenta)
-                                                         values ('$this->fecha', '$this->monto', '$this->idCuenta');");
+                                                        values ('$this->fecha', '$this->monto', '$this->idCuenta');");
             $consulta->execute();
 
             $consulta = $objetoAccesoDato->RetornarConsulta("UPDATE cuentas set cuentas.saldo = cuentas.saldo + '$this->monto' where cuentas.id = '$this->idCuenta';");

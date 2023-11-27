@@ -77,7 +77,7 @@ class Cuenta{
         { 
             if($cuenta['tipoCuenta'] == $tipoCuenta && $cuenta['numeroDeCuenta'] == $numeroDeCuenta)
             {
-                return json_encode(array("moneda" => $cuenta['moneda'], "saldo"=> $cuenta['saldo']));
+                return json_encode(array("moneda" => $cuenta['tipoCuenta'], "saldo"=> $cuenta['saldo']));
             }
         }
 
